@@ -1,4 +1,4 @@
-import { FlatList, View, StyleSheet, Dimensions } from 'react-native'
+import { FlatList, View, StyleSheet } from 'react-native'
 import { RepositoryItem } from './RepositoryItem'
 import theme from './theme'
 
@@ -7,9 +7,6 @@ const styles = StyleSheet.create({
     height: 10
   }
 })
-
-const windowDimensions = Dimensions.get('window')
-const screenDimensions = Dimensions.get('screen')
 
 const repositories = [
   {
@@ -37,8 +34,7 @@ const repositories = [
   {
     id: 'django.django',
     fullName: 'django/django',
-    description:
-      'The Web framework for perfectionists with deadlines. Test of a long string',
+    description: 'The Web framework for perfectionists with deadlines.',
     language: 'Python',
     forksCount: 21015,
     stargazersCount: 48496,
