@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
-    fontWeight: theme.fontWeights.normal
+    fontWeight: theme.fontWeights.normal,
+    flexShrink: 1
   },
   colorTextSecondary: {
     color: theme.colors.textSecondary
@@ -23,7 +24,14 @@ const styles = StyleSheet.create({
   }
 })
 
-const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
+type TextProps = {
+  color?: 'textPrimary' | 'textSecondary' | 'primary' | 'white'
+  fontSize?: 'subheading' | number
+  fontWeight?: 'bold'
+  style?: {}
+} & NativeText['props']
+
+const Text = ({ color, fontSize, fontWeight, style, ...props }: TextProps) => {
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,

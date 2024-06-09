@@ -8,8 +8,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.bgDark
   },
   pressable: {
-    padding: 10,
-    paddingTop: Constants.statusBarHeight
+    paddingHorizontal: 10,
+    paddingTop: Constants.statusBarHeight,
+    paddingBottom: 10
   }
 })
 

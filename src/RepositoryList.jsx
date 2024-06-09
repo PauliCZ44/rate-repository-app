@@ -1,11 +1,15 @@
-import { FlatList, View, StyleSheet } from 'react-native'
+import { FlatList, View, StyleSheet, Dimensions } from 'react-native'
 import { RepositoryItem } from './RepositoryItem'
+import theme from './theme'
 
 const styles = StyleSheet.create({
   separator: {
     height: 10
   }
 })
+
+const windowDimensions = Dimensions.get('window')
+const screenDimensions = Dimensions.get('screen')
 
 const repositories = [
   {
@@ -33,7 +37,8 @@ const repositories = [
   {
     id: 'django.django',
     fullName: 'django/django',
-    description: 'The Web framework for perfectionists with deadlines.',
+    description:
+      'The Web framework for perfectionists with deadlines. Test of a long string',
     language: 'Python',
     forksCount: 21015,
     stargazersCount: 48496,
@@ -63,6 +68,11 @@ const RepositoryList = () => {
       ItemSeparatorComponent={ItemSeparator}
       // other props
       renderItem={({ item }) => <RepositoryItem {...item} />}
+      style={{
+        backgroundColor: theme.colors.bgNeutralLight,
+        paddingHorizontal: 4,
+        paddingVertical: 4
+      }}
     />
   )
 }
