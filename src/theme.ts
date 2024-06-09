@@ -6,7 +6,9 @@ const theme = {
     bgLihgt: '#e1e4e8',
     bgNeutralLight: '#ebebeb',
     bgDark: '#24292e',
-    primary: '#0366d6'
+    primary: '#0366d6',
+    primaryLight: '#2B9ECF',
+    primaryDark: '#003d6f'
   },
   fontSizes: {
     body: 14,
