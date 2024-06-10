@@ -14,15 +14,16 @@ interface StatProps {
   value: number
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+  notation: 'compact',
+  maximumFractionDigits: 1,
+  maximumSignificantDigits: 3
+}).format
+
 export const Stat = ({ label, value }: StatProps) => {
-  const formatted = new Intl.NumberFormat('en-US', {
-    notation: 'compact',
-    maximumFractionDigits: 1,
-    maximumSignificantDigits: 3
-  }).format(value)
   return (
     <View style={styles.container}>
-      <Text fontWeight="bold">{formatted}</Text>
+      <Text fontWeight="bold">{formatter(value)}</Text>
       <Text color="textSecondary">{label}</Text>
     </View>
   )
