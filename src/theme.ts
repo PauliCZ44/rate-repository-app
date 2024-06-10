@@ -8,7 +8,9 @@ const theme = {
     bgDark: '#24292e',
     primary: '#0366d6',
     primaryLight: '#2B9ECF',
-    primaryDark: '#003d6f'
+    primaryDark: '#003d6f',
+    error: '#d73a4a',
+    succes: '#28a745'
   },
   fontSizes: {
     body: 14,
@@ -19,6 +21,7 @@ const theme = {
   },
   fontWeights: {
     normal: '400',
+    semiBold: '500',
     bold: '700'
   }
 } as const

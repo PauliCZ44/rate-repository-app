@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 })
 
 type TextProps = {
-  color?: 'textPrimary' | 'textSecondary' | 'primary' | 'white'
+  color?: 'textPrimary' | 'textSecondary' | 'primary' | 'white' | 'error'
   fontSize?: 'subheading' | number
   fontWeight?: 'bold'
   style?: {}
@@ -37,6 +37,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }: TextProps) => {
     color === 'textSecondary' && styles.colorTextSecondary,
     color === 'primary' && styles.colorPrimary,
     color === 'white' && { color: theme.colors.textWhite },
+    color === 'error' && { color: theme.colors.error },
     fontSize === 'subheading' && styles.fontSizeSubheading,
     typeof fontSize === 'number' && { fontSize: fontSize },
     fontWeight === 'bold' && styles.fontWeightBold,

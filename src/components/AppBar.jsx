@@ -30,7 +30,7 @@ const AppBar = () => {
     <View style={styles.container} id="container">
       <ScrollView horizontal style={{ width: '100%' }}>
         <TabLink to={'/'}>Repositories</TabLink>
-        <TabLink style={{ marginLeft: 'auto' }} to={'/signIn'}>
+        <TabLink style={{ marginLeft: 'auto' }} to={'/signin'}>
           Sign In
         </TabLink>
       </ScrollView>
