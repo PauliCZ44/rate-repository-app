@@ -9,22 +9,22 @@ import { HelperFormText } from './HelperFormText'
 
 const styles = StyleSheet.create({
   formControl: {
-    gap: 2
+    gap: theme.spacing(0.25)
   },
   input: {
     borderColor: theme.colors.primaryLight,
     borderWidth: 2,
-    borderRadius: 3,
+    borderRadius: theme.borderRadius,
     borderStyle: 'solid',
-    height: 32,
-    padding: 8
+    height: theme.spacing(4),
+    padding: theme.spacing(1)
   },
   button: {
     backgroundColor: theme.colors.primary
   },
   form: {
-    gap: 8,
-    padding: 16,
+    gap: theme.spacing(1),
+    padding: theme.spacing(2),
     maxWidth: 512,
     marginHorizontal: 'auto',
     width: '100%'

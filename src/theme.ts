@@ -15,8 +15,11 @@ const theme = {
     succes: '#28a745'
   },
   fontSizes: {
+    small: 12,
     body: 14,
-    subheading: 16
+    subheading: 16,
+    heading: 20,
+    xxxl: 32
   },
   fonts: {
     main: Platform.select({
@@ -29,7 +32,9 @@ const theme = {
     normal: '400',
     semiBold: '500',
     bold: '700'
-  }
+  },
+  borderRadius: 3,
+  spacing: (num: number) => num * 8
 } as const
 
 export default theme
