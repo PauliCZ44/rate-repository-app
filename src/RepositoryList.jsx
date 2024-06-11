@@ -1,6 +1,10 @@
-import { FlatList, View, StyleSheet } from 'react-native'
+import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
 import { RepositoryItem } from './RepositoryItem'
 import theme from './theme'
+import { Suspense, useEffect, useState } from 'react'
+import { Show } from './components/Show'
+import Text from './components/Text'
+import { useRepositories } from './hooks/useRepositories'
 
 const styles = StyleSheet.create({
   separator: {
@@ -58,18 +62,33 @@ const repositories = [
 const ItemSeparator = () => <View style={styles.separator} />
 
 const RepositoryList = () => {
+  const { repositories, error, loading } = useRepositories()
+
   return (
-    <FlatList
-      data={repositories}
-      ItemSeparatorComponent={ItemSeparator}
-      // other props
-      renderItem={({ item }) => <RepositoryItem {...item} />}
-      style={{
-        backgroundColor: theme.colors.bgNeutralLight,
-        paddingHorizontal: 4,
-        paddingVertical: 4
-      }}
-    />
+    <>
+      <Show when={!loading}>
+        <FlatList
+          data={repositories}
+          ItemSeparatorComponent={ItemSeparator}
+          // other props
+          renderItem={({ item }) => <RepositoryItem {...item} />}
+          style={{
+            backgroundColor: theme.colors.bgNeutralLight,
+            paddingHorizontal: 4,
+            paddingVertical: 4
+          }}
+        />
+      </Show>
+
+      <Show when={error}>
+        <Text error>Something went wrong...</Text>
+      </Show>
+      <Show when={loading}>
+        <View style={{ margin: 'auto' }}>
+          <ActivityIndicator size="large" color={theme.colors.primary} />
+        </View>
+      </Show>
+    </>
   )
 }
 
