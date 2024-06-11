@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import { Button } from './Button'
 import { Show } from './Show'
 import { HelperFormText } from './HelperFormText'
+import { useSignIn } from '../hooks/useSignIn'
 
 const styles = StyleSheet.create({
   formControl: {
@@ -50,8 +51,19 @@ const WithLabel = ({ label, children }) => {
 }
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values)
+  const [signIn] = useSignIn()
+
+  const onSubmit = async ({ username, password }) => {
+    try {
+      const signInRes = await signIn({ username, password })
+      console.log(
+        signInRes,
+        'accesToken: ',
+        signInRes.data.authenticate.accessToken
+      )
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const { values, handleChange, handleSubmit, errors, touched } = useFormik({
