@@ -11,9 +11,11 @@ const styles = StyleSheet.create({
   }
 })
 
-const RepositoryList = () => {
-  const { repositories, error, loading } = useRepositories()
-
+export const RepositoryListContainer = ({
+  repositories,
+  error = false,
+  loading = false
+}) => {
   return (
     <>
       <Show when={!loading}>
@@ -39,6 +41,12 @@ const RepositoryList = () => {
       </Show>
     </>
   )
+}
+
+const RepositoryList = () => {
+  const { repositories, error, loading } = useRepositories()
+
+  return <RepositoryListContainer {...{ repositories, error, loading }} />
 }
 
 export default RepositoryList

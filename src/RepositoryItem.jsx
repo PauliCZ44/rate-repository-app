@@ -50,7 +50,7 @@ export const RepositoryItem = ({
   reviewCount,
   stargazersCount
 }) => (
-  <View style={styles.item} id={id}>
+  <View style={styles.item} id={id} testID="repositoryItem">
     <View style={styles.upperContainer}>
       <Image
         id={ownerAvatarUrl}
