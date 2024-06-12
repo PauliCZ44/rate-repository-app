@@ -62,7 +62,7 @@ const SignIn = () => {
         signInRes.data.authenticate.accessToken
       )
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 

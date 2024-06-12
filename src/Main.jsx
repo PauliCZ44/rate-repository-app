@@ -1,4 +1,3 @@
-import Constants from 'expo-constants'
 import { StyleSheet, View } from 'react-native'
 import RepositoryList from './RepositoryList'
 import AppBar from './components/AppBar'
@@ -13,7 +12,6 @@ const styles = StyleSheet.create({
 })
 
 const Main = () => {
-  console.log({ Constants })
   return (
     <View style={styles.container}>
       <AppBar />
