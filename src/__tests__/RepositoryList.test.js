@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react-native'
-import { RepositoryListContainer } from '../RepositoryList'
 import { formatter } from '../utils/numberFormatter'
+import { RepositoryListContainer } from '../components/RepositoryList'
+import { NativeRouter } from 'react-router-native'
 
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
@@ -51,11 +52,13 @@ describe('RepositoryList', () => {
       const repositoriesListItems = repositories.edges.map((edge) => edge.node)
 
       render(
-        <RepositoryListContainer
-          repositories={repositoriesListItems}
-          loading={false}
-          error={false}
-        />
+        <NativeRouter>
+          <RepositoryListContainer
+            repositories={repositoriesListItems}
+            loading={false}
+            error={false}
+          />
+        </NativeRouter>
       )
       const repositoryItems = screen.getAllByTestId('repositoryItem')
 

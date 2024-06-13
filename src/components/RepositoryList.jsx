@@ -24,8 +24,6 @@ export const RepositoryListContainer = ({
             data={repositories}
             ItemSeparatorComponent={<Separator />}
             renderItem={({ item }) => {
-              console.log(item)
-
               return (
                 <Link
                   style={{ display: 'contents' }}

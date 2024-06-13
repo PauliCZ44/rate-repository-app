@@ -50,22 +50,8 @@ const WithLabel = ({ label, children }) => {
   )
 }
 
-const SignIn = () => {
-  const [signIn] = useSignIn()
-
-  const onSubmit = async ({ username, password }) => {
-    try {
-      const signInRes = await signIn({ username, password })
-      console.log(
-        signInRes,
-        'accesToken: ',
-        signInRes.data.authenticate.accessToken
-      )
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
+// Testable part of the component.
+export const SignInContainer = ({ onSubmit }) => {
   const { values, handleChange, handleSubmit, errors, touched } = useFormik({
     initialValues: { username: '', password: '' },
     validationSchema: SignupSchema,
@@ -85,6 +71,7 @@ const SignIn = () => {
           placeholder="Your username"
           value={values.username}
           onChangeText={handleChange('username')}
+          aria-label="username"
         />
         <Show when={errors.username && touched.username}>
           <HelperFormText error>{errors.username}</HelperFormText>
@@ -97,15 +84,37 @@ const SignIn = () => {
           secureTextEntry
           value={values.password}
           onChangeText={handleChange('password')}
+          aria-label="password"
         />
         <Show when={errors.password && touched.password}>
           <HelperFormText error>{errors.password}</HelperFormText>
         </Show>
       </WithLabel>
       <View />
-      <Button onPress={() => handleSubmit()}>Sign in</Button>
+      <Button onPress={() => handleSubmit()} testID="submitButton">
+        Sign in
+      </Button>
     </View>
   )
+}
+
+const SignIn = () => {
+  const [signIn] = useSignIn()
+
+  const onSubmit = async ({ username, password }) => {
+    try {
+      const signInRes = await signIn({ username, password })
+      console.log(
+        signInRes,
+        'accesToken: ',
+        signInRes.data.authenticate.accessToken
+      )
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  return <SignInContainer onSubmit={onSubmit} />
 }
 
 export default SignIn
