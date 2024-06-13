@@ -1,12 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { RepositoryItem } from './RepositoryItem'
-import Text from './Text'
 import { GET_REPOSITORY } from '../graphql/queries'
 import { useParams } from 'react-router-native'
-import { Pressable } from 'react-native'
+import { ActivityIndicator, Pressable, View } from 'react-native'
 import { Button } from './Button'
 import * as Linking from 'expo-linking'
 import theme from '../theme'
+import { RepoWrapper } from './RepoWrapper'
+import { Separator } from './Separator'
 
 export const RepositoryView = () => {
   const { id } = useParams()
@@ -16,22 +17,33 @@ export const RepositoryView = () => {
     fetchPolicy: 'cache-and-network'
   })
 
-  console.log(data)
-  console.log({ id })
+  console.log({ id, data })
 
   const handleButtonPres = () => {
     Linking.openURL(data.repository.url)
   }
 
+  if (loading) {
+    return (
+      <View style={{ margin: 'auto' }}>
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+      </View>
+    )
+  }
+
   return (
-    <RepositoryItem {...data}>
-      <Button
-        onPress={handleButtonPres}
-        style={{ marginTop: theme.spacing(1.5) }}
-      >
-        View on GitHub
-      </Button>
-    </RepositoryItem>
+    <RepoWrapper>
+      <Separator />
+      <RepositoryItem {...data.repository}>
+        <Button
+          isBig
+          onPress={handleButtonPres}
+          style={{ marginTop: theme.spacing(2) }}
+        >
+          View on GitHub
+        </Button>
+      </RepositoryItem>
+    </RepoWrapper>
   )
 }
 1

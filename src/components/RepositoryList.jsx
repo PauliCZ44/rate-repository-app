@@ -1,16 +1,12 @@
-import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
+import { FlatList, View, ActivityIndicator } from 'react-native'
 import { RepositoryItem } from './RepositoryItem'
 import theme from '../theme'
 import { Show } from './Show'
 import Text from './Text'
 import { useRepositories } from '../hooks/useRepositories'
 import { Link } from 'react-router-native'
-
-const styles = StyleSheet.create({
-  separator: {
-    height: 10
-  }
-})
+import { RepoWrapper, wrapperStyles } from './RepoWrapper'
+import { Separator } from './Separator'
 
 export const RepositoryListContainer = ({
   repositories,
@@ -20,28 +16,28 @@ export const RepositoryListContainer = ({
   return (
     <>
       <Show when={!loading}>
-        <FlatList
-          data={repositories}
-          ItemSeparatorComponent={<View style={styles.separator} />}
-          renderItem={({ item }) => {
-            console.log(item)
+        <RepoWrapper>
+          <FlatList
+            ListHeaderComponent={<Separator />}
+            ListFooterComponent={<Separator />}
+            style={wrapperStyles.wrapper}
+            data={repositories}
+            ItemSeparatorComponent={<Separator />}
+            renderItem={({ item }) => {
+              console.log(item)
 
-            return (
-              <Link
-                style={{ display: 'contents' }}
-                to={`/repositories/${item.id}`}
-                data-to={`/repositories/${item.id}`}
-              >
-                <RepositoryItem {...item} />
-              </Link>
-            )
-          }}
-          style={{
-            backgroundColor: theme.colors.bgNeutralLight,
-            paddingHorizontal: 4,
-            paddingVertical: 4
-          }}
-        />
+              return (
+                <Link
+                  style={{ display: 'contents' }}
+                  to={`/repositories/${item.id}`}
+                  data-to={`/repositories/${item.id}`}
+                >
+                  <RepositoryItem {...item} />
+                </Link>
+              )
+            }}
+          />
+        </RepoWrapper>
       </Show>
 
       <Show when={error}>

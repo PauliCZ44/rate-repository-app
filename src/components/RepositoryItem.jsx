@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     padding: 8,
     maxWidth: 512,
     width: '100%',
-    margin: 'auto'
+    marginHorizontal: 'auto'
   },
   title: {
     fontSize: 16

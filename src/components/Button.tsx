@@ -6,10 +6,15 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.primary,
     borderRadius: 3,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingHorizontal: theme.spacing(1.5),
+    paddingVertical: theme.spacing(1),
     borderWidth: 1,
     borderColor: 'transparent'
+  },
+  buttonBig: {
+    paddingHorizontal: theme.spacing(2),
+    paddingVertical: theme.spacing(1.5),
+    borderRadius: 4
   },
   buttonPressed: {
     backgroundColor: theme.colors.primaryDark
@@ -29,14 +34,16 @@ const styles = StyleSheet.create({
 
 export const Button = ({
   style,
+  isBig,
   ...props
-}: PressableProps & { children: string }) => {
+}: PressableProps & { children: string; isBig?: boolean }) => {
   return (
     <Pressable
       //@ts-ignore
       style={({ pressed, focused }) => {
         return [
           styles.button,
+          isBig && styles.buttonBig,
           pressed && styles.buttonPressed,
           focused && styles.buttonFocused,
           style
