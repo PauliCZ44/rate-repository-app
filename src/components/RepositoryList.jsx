@@ -1,9 +1,10 @@
 import { FlatList, View, StyleSheet, ActivityIndicator } from 'react-native'
 import { RepositoryItem } from './RepositoryItem'
-import theme from './theme'
-import { Show } from './components/Show'
-import Text from './components/Text'
-import { useRepositories } from './hooks/useRepositories'
+import theme from '../theme'
+import { Show } from './Show'
+import Text from './Text'
+import { useRepositories } from '../hooks/useRepositories'
+import { Link } from 'react-router-native'
 
 const styles = StyleSheet.create({
   separator: {
@@ -22,7 +23,19 @@ export const RepositoryListContainer = ({
         <FlatList
           data={repositories}
           ItemSeparatorComponent={<View style={styles.separator} />}
-          renderItem={({ item }) => <RepositoryItem {...item} />}
+          renderItem={({ item }) => {
+            console.log(item)
+
+            return (
+              <Link
+                style={{ display: 'contents' }}
+                to={`/repositories/${item.id}`}
+                data-to={`/repositories/${item.id}`}
+              >
+                <RepositoryItem {...item} />
+              </Link>
+            )
+          }}
           style={{
             backgroundColor: theme.colors.bgNeutralLight,
             paddingHorizontal: 4,
@@ -34,6 +47,7 @@ export const RepositoryListContainer = ({
       <Show when={error}>
         <Text error>Something went wrong...</Text>
       </Show>
+
       <Show when={loading}>
         <View style={{ margin: 'auto' }}>
           <ActivityIndicator size="large" color={theme.colors.primary} />

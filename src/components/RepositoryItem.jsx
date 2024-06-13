@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View } from 'react-native'
-import theme from './theme'
-import Text from './components/Text'
-import { Stat } from './components/Stat'
+import theme from '../theme'
+import Text from './Text'
+import { Stat } from './Stat'
 
 const styles = StyleSheet.create({
   item: {
@@ -48,7 +48,8 @@ export const RepositoryItem = ({
   ownerAvatarUrl,
   ratingAverage,
   reviewCount,
-  stargazersCount
+  stargazersCount,
+  children
 }) => (
   <View style={styles.item} id={id} testID="repositoryItem">
     <View style={styles.upperContainer}>
@@ -74,5 +75,6 @@ export const RepositoryItem = ({
       <Stat label="Reviews" value={reviewCount} />
       <Stat label="Rating" value={ratingAverage} />
     </View>
+    {children}
   </View>
 )

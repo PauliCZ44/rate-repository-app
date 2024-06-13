@@ -38,7 +38,8 @@ export const Button = ({
         return [
           styles.button,
           pressed && styles.buttonPressed,
-          focused && styles.buttonFocused
+          focused && styles.buttonFocused,
+          style
         ]
       }}
       {...props}
